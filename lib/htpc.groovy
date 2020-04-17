@@ -334,7 +334,7 @@ def fetchMovieArtworkAndNfo(movieDir, movie, movieFile = null, extras = false, o
 		def movieInfo = TheMovieDB.getMovieInfo(movie, locale, true)
 
 		// fetch nfo
-		fetchMovieNfo(movieDir.resolve('movie.nfo'), movieInfo, movieFile)
+		fetchMovieNfo(movieDir.resolve("${movie}.nfo"), movieInfo, movieFile)
 
 		// generate url files
 		if (extras) {
@@ -347,7 +347,7 @@ def fetchMovieArtworkAndNfo(movieDir, movie, movieFile = null, extras = false, o
 		}
 
 		// fetch series banner, fanart, posters, etc
-		fetchMovieArtwork(movieDir.resolve('poster.jpg'), movieInfo, 'posters', override, locale)
+		fetchMovieArtwork(movieDir.resolve("${movie}.jpg"), movieInfo, 'posters', override, locale)
 		fetchMovieArtwork(movieDir.resolve('fanart.jpg'), movieInfo, 'backdrops', override, locale)
 
 		['hdmovieclearart', 'movieart'].findResult { type -> fetchMovieFanart(movieDir.resolve('clearart.png'), movieInfo, type, null, override, locale) }
@@ -359,7 +359,7 @@ def fetchMovieArtworkAndNfo(movieDir, movie, movieFile = null, extras = false, o
 		}
 
 		// folder image (reuse movie poster if possible)
-		copyIfPossible(movieDir.resolve('poster.jpg'), movieDir.resolve('folder.jpg'))
+		copyIfPossible(movieDir.resolve("${movie}.jpg"), movieDir.resolve('folder.jpg'))
 	}
 }
 
